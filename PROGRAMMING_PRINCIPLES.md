@@ -40,11 +40,11 @@ public static int CountValue<T>(this T[] array, T value) where T : IEquatable<T>
 - [`ExtendedDictionary<T, U, V>`](https://github.com/ipz242smv/Software-design-lab1/blob/37a2ef857ad036026fe86eb1c02acc42b6d2f2a4/Program.cs#L76-L146) — відповідає за управління колекцією.
 
 ```csharp
-// StringExtensions.cs — лише операції над рядками
+// StringExtensions — лише операції над рядками
 public static string Reverse(this string input) { ... }
 public static int CountOccurrences(this string input, char character) { ... }
 
-// ArrayExtensions.cs — лише операції над масивами
+// ArrayExtensions — лише операції над масивами
 public static int CountValue<T>(this T[] array, T value) { ... }
 public static T[] GetUniqueElements<T>(this T[] array) { ... }
 ```
@@ -60,7 +60,7 @@ public static T[] GetUniqueElements<T>(this T[] array) { ... }
 Усі методи перевіряють вхідні дані на початку та негайно повертають результат або кидають виняток:
 
 ```csharp
-// StringExtensions.cs
+// StringExtensions
 public static string Reverse(this string input)
 {
     if (string.IsNullOrEmpty(input))
@@ -68,7 +68,7 @@ public static string Reverse(this string input)
     ...
 }
 
-// ArrayExtensions.cs
+// ArrayExtensions
 public static int CountValue<T>(this T[] array, T value) where T : IEquatable<T>
 {
     if (array == null || array.Length == 0)
@@ -76,7 +76,7 @@ public static int CountValue<T>(this T[] array, T value) where T : IEquatable<T>
     ...
 }
 
-// ExtendedDictionary.cs
+// ExtendedDictionary
 public void Add(T key, U value1, V value2)
 {
     if (ContainsKey(key))
@@ -96,7 +96,7 @@ public void Add(T key, U value1, V value2)
 [`ExtendedDictionary<T, U, V>`](https://github.com/ipz242smv/Software-design-lab1/blob/37a2ef857ad036026fe86eb1c02acc42b6d2f2a4/Program.cs#L76-L146) реалізує тільки `IEnumerable<T>` — мінімальний інтерфейс, потрібний для `foreach`:
 
 ```csharp
-// ExtendedDictionary.cs
+// ExtendedDictionary
 public class ExtendedDictionary<T, U, V> : IEnumerable<ExtendedDictionaryElement<T, U, V>>
 {
     public IEnumerator<ExtendedDictionaryElement<T, U, V>> GetEnumerator() { ... }
@@ -115,15 +115,15 @@ public class ExtendedDictionary<T, U, V> : IEnumerable<ExtendedDictionaryElement
 **Демонстрація:**
 
 ```csharp
-// ArrayExtensions.cs
+// ArrayExtensions
 public static T[] GetUniqueElements<T>(...)  // чітко зрозуміло — повертає унікальні елементи
 
-// ExtendedDictionaryElement.cs
+// ExtendedDictionaryElement
 public T Key { get; private set; }
 public U Value1 { get; private set; }
 public V Value2 { get; private set; }
 
-// Program.cs
+// Program
 int[] uniqueIntArray = intArray.GetUniqueElements();
 string[] uniqueStringArray = stringArray.GetUniqueElements();
 ```
@@ -141,7 +141,7 @@ string[] uniqueStringArray = stringArray.GetUniqueElements();
 У [`ExtendedDictionaryElement`](https://github.com/ipz242smv/Software-design-lab1/blob/37a2ef857ad036026fe86eb1c02acc42b6d2f2a4/Program.cs#L57-L74) поля доступні лише для читання ззовні та встановлюються лише в конструкторі:
 
 ```csharp
-// ExtendedDictionaryElement.cs
+// ExtendedDictionaryElement
 public T Key { get; private set; }
 public U Value1 { get; private set; }
 public V Value2 { get; private set; }
