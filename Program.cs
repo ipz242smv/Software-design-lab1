@@ -40,7 +40,7 @@ public static class ArrayExtensions
     public static T[] GetUniqueElements<T>(this T[] array) where T : IEquatable<T>
     {
         if (array == null || array.Length == 0)
-            return new T[0];
+            return Array.Empty<T>();
 
         List<T> uniqueList = new List<T>();
         foreach (var item in array)
