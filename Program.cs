@@ -42,13 +42,12 @@ public static class ArrayExtensions
         if (array == null || array.Length == 0)
             return Array.Empty<T>();
 
-        List<T> uniqueList = new List<T>();
+        var seen = new HashSet<T>();
+        var uniqueList = new List<T>();
         foreach (var item in array)
         {
-            if (!uniqueList.Any(x => x.Equals(item)))
-            {
+            if (seen.Add(item))
                 uniqueList.Add(item);
-            }
         }
         return uniqueList.ToArray();
     }
