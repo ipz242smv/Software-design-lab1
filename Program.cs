@@ -134,15 +134,6 @@ public class ExtendedDictionary<T, U, V> : IEnumerable<ExtendedDictionaryElement
     {
         return GetEnumerator();
     }
-
-    public void DisplayAll()
-    {
-        Console.WriteLine($"Загальна кількість елементів: {Count}");
-        foreach (var element in elements)
-        {
-            Console.WriteLine(element);
-        }
-    }
 }
 
 class Program
@@ -196,14 +187,18 @@ class Program
         extendedDict.Add(3, "Third", 300.7);
         extendedDict.Add(4, "First", 400.1);
 
-        extendedDict.DisplayAll();
+        Console.WriteLine($"Загальна кількість елементів: {extendedDict.Count}");
+        foreach (var element in extendedDict)
+            Console.WriteLine(element);
 
         Console.WriteLine();
 
         Console.WriteLine("Видалення елемента з ключем 2:");
         bool removed = extendedDict.Remove(2);
         Console.WriteLine($"Елемент видалено? {removed}");
-        extendedDict.DisplayAll();
+        Console.WriteLine($"Загальна кількість елементів: {extendedDict.Count}");
+        foreach (var element in extendedDict)
+            Console.WriteLine(element);
 
         Console.WriteLine();
 
